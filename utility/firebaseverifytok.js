@@ -36,13 +36,15 @@ function FirebaseVerifyTok() {
         
         res.send(error);
       });
+      return;
   };
 
   this.verifyFBToken=function(token,res){
-
+   console.log(token);
     getAuth()
   .verifyIdToken(token)
   .then((decodedToken) => {
+       console.log(decodedToken);
     const uid = decodedToken.uid;
     res.send(uid);
     // ...
@@ -53,6 +55,7 @@ function FirebaseVerifyTok() {
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(errorCode+errorMessage);
+    res.send(uid);
   });
 
    /* const auth = getAuth();
@@ -76,7 +79,7 @@ function FirebaseVerifyTok() {
       // Handle error
    //   console.log(error);
   //  });
-    res.send("ddd");
+    //res.send("ddd");
 
   };
 }
