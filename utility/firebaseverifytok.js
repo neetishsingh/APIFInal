@@ -8,7 +8,7 @@ const admin = require('firebase-admin');
 
 
 function FirebaseVerifyTok() {
-    var serviceAccount = require("../assetsfile/traderex-aaab1-firebase-adminsdk-5eb4u-2c116294ab.json");
+    var serviceAccount = require("../assetsfile/covidhelp-68308-firebase-adminsdk-y9lnw-bb4a06bb25.json");
     
 
     initializeApp({
