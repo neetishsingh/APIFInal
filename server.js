@@ -5,12 +5,19 @@
  * 
  * http://localhost:8000/api/users
  * http://localhost:8000/api/transactions/1
+ * 
 */
 var express = require('express');
 var bodyparser = require('body-parser');
 
 var routes = require('./routes/route');
 //var vhost = require('vhost');
+var middleware=require("./middleware/typrmiddlewaretest");
+//middlewares
+//1-fetch user or create user out of db.
+
+
+
 
 // creating server instance
 var app = express();
@@ -21,6 +28,10 @@ app.use(bodyparser.urlencoded({ extended : true}));
 // parsing JSON
 app.use(bodyparser.json());
 
+
+//middleware.configure(app);
+middleware.authenticate(app);
+middleware.testa(app);
 //set application route with server instance
 routes.configure(app);
 

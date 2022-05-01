@@ -14,6 +14,7 @@ module.exports = {
 
         // adding route for users, here app is express instance which provide use
         // get method for handling get request from http server. 
+     
         app.get('/api/users', function (req, res) {
             transactions.getAllUsers(res);
              
@@ -30,28 +31,22 @@ module.exports = {
         });
         app.get('/api/verifytoken/:id/',function(req,res){
 
-            firebaseverifytok.verifyFBToken(req.params.id,res);
+           // firebaseverifytok.verifyFBToken(req.params.id,res);
+           console.log(req.params.id);
+           res.end(req.params.id);
             
+        });
+
+        app.get('/api/test',function(req,res){
+
+           // firebaseverifytok.verifyFBToken(req.params.id,res);
+            
+           firebaseverifytok.verifyFBToken(req.params.id,res);
         });
            
         //verifyFBToken
 
-        app.get('/api/sendsms',function(req,res){
-            const accountSid = 'AC7c1dc894678c9e41663a961866f3b63f'; // Your Account SID from www.twilio.com/console
-            const authToken = '18e5ee27a104adc80ce7919a543bde8b'; // Your Auth Token from www.twilio.com/console
-            
-            const twilio = require('twilio');
-            const client = new twilio(accountSid, authToken);
-            
-            client.messages
-              .create({
-                body: 'Hello from Node',
-                to: '+919643046366', // Text this number
-                from: '+18563515088', // From a valid Twilio number
-              })
-              .then((message) => console.log(message.sid));
-            
-        });
+       
     }
 
 };

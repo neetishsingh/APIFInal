@@ -42,9 +42,30 @@ function FirebaseVerifyTok() {
    this.getTokenDecodedData=function(token){
     console.log(token);
     
-    return getAuth()
-  .verifyIdToken(token);
-  
+    getAuth()
+  .verifyIdToken(token)
+  .then((decodedToken) => {
+       console.log(decodedToken);
+    const uid = decodedToken.uid;
+      return uid;
+    // res.send(uid);
+    // ...
+  })
+  .catch((error) => {
+    // Handle error
+    console.log("///////////////////");
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode+errorMessage);
+   // res.send(uid);
+    //var err = new Error('Something wrong with the request f').message;
+      //  err.status=401;
+     // return null;
+      //  res.status(401).json({ error: errorCode });
+        //res.end("hyhh");
+        //res.next();
+  });
+return null;
   
    };
 

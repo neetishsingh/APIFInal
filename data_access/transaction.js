@@ -34,7 +34,7 @@ function Transaction() {
                 'transactions t INNER JOIN users u ON t.UserId=u.UserID WHERE t.UserId = ?;';
             con.query(query, id, function (err, result) {
                     con.release();
-                    res.send(result);
+                    res.send(result); 
                 });
         });
     };

@@ -11,8 +11,20 @@ var mysql = require('mysql');
 var fs = require('file-system');
 function MySQLConnect() {
   this.pool = null;
+  this.tp=1;
   // Init MySql Connection Pool
-  this.init = function() {
+  this.init = this.tp==1?function() {
+    this.pool = mysql.createPool({
+      connectionLimit: 10,
+      host     : 'localhost',
+      user     : 'root',
+      password : '',
+      database: 'defaultdb',
+      //ssl : {
+        //ca : fs.readFileSync( __dirname  +'\\ca-certificate.crt')
+    //}
+    });
+  }:function() {
     this.pool = mysql.createPool({
       connectionLimit: 10,
       host     : 'rexoracluster-do-user-11150778-0.b.db.ondigitalocean.com',
